@@ -1,7 +1,7 @@
 import { spawn } from "node:child_process";
 
 const port = process.env.PORT || process.env.SERVER_PORT || "3000";
-const hostname = process.env.HOSTNAME || process.env.HOST || "0.0.0.0";
+const hostname = process.env.HOST || "0.0.0.0";
 
 const child = spawn(process.execPath, ["server.js"], {
   env: {
