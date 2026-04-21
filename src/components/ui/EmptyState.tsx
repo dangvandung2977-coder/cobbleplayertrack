@@ -12,12 +12,12 @@ export function EmptyState({ title, message, eyebrow }: EmptyStateProps) {
   const { t } = useLanguage();
 
   return (
-    <div className="border border-dashed border-[#4d5736] bg-[#15180f]/70 p-8 text-center">
-      <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#d7ae45]">
+    <div className="rounded-md border border-dashed border-[#3f503f] bg-[#111511]/75 p-8 text-center">
+      <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#67d8cf]">
         {eyebrow ?? t("common.noRecords")}
       </p>
-      <h3 className="mt-2 text-xl font-black text-[#f4ead2]">{title}</h3>
-      <p className="mx-auto mt-2 max-w-xl text-sm text-[#b7a98b]">{message}</p>
+      <h3 className="mt-2 text-xl font-black text-[#fff5de]">{title}</h3>
+      <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-[#c1b59a]">{message}</p>
     </div>
   );
 }

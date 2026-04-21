@@ -25,15 +25,15 @@ export function PartySlot({ displaySlot, pokemon, selected, onSelect }: PartySlo
 
   if (!pokemon) {
     return (
-      <div className="grid min-h-[86px] grid-cols-[44px_1fr] gap-3 border border-dashed border-[#4d5736]/60 bg-[#15180f]/45 p-3 opacity-70">
-        <div className="grid h-11 w-11 place-items-center border border-[#4d5736] bg-[#1d2117] font-mono text-xs text-[#83785f]">
+      <div className="grid min-h-[86px] grid-cols-[44px_1fr] gap-3 rounded-md border border-dashed border-[#3f503f]/60 bg-[#111511]/45 p-3 opacity-80">
+        <div className="grid h-11 w-11 place-items-center rounded-md border border-[#3f503f] bg-[#1b211b] font-mono text-xs text-[#8c9a86]">
           {displaySlot}
         </div>
         <div className="min-w-0">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#83785f]">
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#8c9a86]">
             {t("party.emptySlot")}
           </p>
-          <p className="mt-1 text-sm font-bold text-[#b7a98b]">{t("party.noSyncedPokemon")}</p>
+          <p className="mt-1 text-sm font-bold text-[#c1b59a]">{t("party.noSyncedPokemon")}</p>
         </div>
       </div>
     );
@@ -48,25 +48,25 @@ export function PartySlot({ displaySlot, pokemon, selected, onSelect }: PartySlo
       onClick={onSelect}
       aria-pressed={selected}
       className={cn(
-        "focus-ring grid min-h-[86px] w-full grid-cols-[44px_1fr] gap-3 border p-3 text-left transition",
+        "focus-ring grid min-h-[86px] w-full grid-cols-[44px_1fr] gap-3 rounded-md border p-3 text-left transition",
         selected
-          ? "border-[#f1ce73] bg-[#3a321d] shadow-[inset_4px_0_0_#d7ae45,inset_0_0_0_2px_rgba(215,174,69,0.28),0_0_0_1px_rgba(215,174,69,0.18)]"
-          : "border-[#4d5736]/70 bg-[#15180f]/85 hover:border-[#d7ae45]/70 hover:bg-[#1b1f16]",
+          ? "border-[#ffe09a] bg-[#302b1c] shadow-[inset_4px_0_0_#f0bf54,inset_0_0_0_2px_rgba(240,191,84,0.24),0_0_0_1px_rgba(240,191,84,0.18)]"
+          : "border-[#3f503f]/70 bg-[#111511]/85 hover:border-[#67d8cf]/70 hover:bg-[#1b211b]",
       )}
     >
       <div
         className={cn(
-          "grid h-11 w-11 place-items-center border font-mono text-sm font-black",
+          "grid h-11 w-11 place-items-center rounded-md border font-mono text-sm font-black",
           selected
-            ? "border-[#f1ce73] bg-[#d7ae45] text-[#15180f]"
-            : "border-[#4d5736] bg-[#252a1d] text-[#d7ae45]",
+            ? "border-[#ffe09a] bg-[#f0bf54] text-[#10130f]"
+            : "border-[#3f503f] bg-[#263126] text-[#67d8cf]",
         )}
       >
         {spriteUrl ? (
           <img
             src={spriteUrl}
             alt=""
-            className="h-10 w-10 object-contain [image-rendering:pixelated]"
+            className="pixel-art h-10 w-10 object-contain"
           />
         ) : (
           getInitials(pokemon.species)
@@ -76,12 +76,12 @@ export function PartySlot({ displaySlot, pokemon, selected, onSelect }: PartySlo
       <div className="min-w-0">
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">
-            <p className="truncate text-base font-black text-[#f4ead2]">{getPokemonDisplayName(pokemon)}</p>
-            <p className="mt-0.5 truncate font-mono text-[11px] uppercase tracking-[0.1em] text-[#83785f]">
+            <p className="truncate text-base font-black text-[#fff5de]">{getPokemonDisplayName(pokemon)}</p>
+            <p className="mt-0.5 truncate font-mono text-[11px] uppercase tracking-[0.1em] text-[#8c9a86]">
               {getDexNumber(pokemon)} / {getPokemonSpeciesName(pokemon)}
             </p>
           </div>
-          <span className="shrink-0 border border-[#4d5736] bg-[#252a1d] px-2 py-1 font-mono text-[11px] text-[#f4ead2]">
+          <span className="shrink-0 rounded-md border border-[#3f503f] bg-[#263126] px-2 py-1 font-mono text-[11px] text-[#fff5de]">
             Lv {pokemon.level ?? "?"}
           </span>
         </div>

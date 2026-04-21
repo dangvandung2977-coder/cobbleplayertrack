@@ -41,7 +41,7 @@ export function PlayerCompanionNav({
   ];
 
   return (
-    <section className="game-panel rounded-sm p-2">
+    <section className="game-panel p-2">
       <nav
         aria-label={`${t("player.trainerFile")} companion pages`}
         className="grid gap-2 md:grid-cols-3"
@@ -53,28 +53,28 @@ export function PlayerCompanionNav({
               key={item.id}
               href={buildPlayerCompanionHref(item.id, playerUuid)}
               className={cn(
-                "focus-ring grid grid-cols-[40px_1fr] gap-3 border px-4 py-3 transition duration-150 ease-out",
+                "focus-ring grid grid-cols-[40px_1fr] gap-3 rounded-md border px-4 py-3 transition duration-150 ease-out",
                 active
-                  ? "border-[#d7ae45] bg-[#2f2816] shadow-[inset_0_0_0_1px_rgba(215,174,69,0.28)]"
-                  : "border-[#4d5736]/70 bg-[#15180f]/65 hover:border-[#d7ae45]/70 hover:bg-[#1b1f16]",
+                  ? "border-[#f0bf54] bg-[#2d2a1b] shadow-[inset_0_0_0_1px_rgba(240,191,84,0.28)]"
+                  : "border-[#3f503f]/70 bg-[#111511]/65 hover:border-[#67d8cf]/70 hover:bg-[#1b211b]",
               )}
               aria-current={active ? "page" : undefined}
             >
               <span
                 className={cn(
-                  "grid h-10 w-10 place-items-center border font-mono text-sm font-black",
+                  "grid h-10 w-10 place-items-center rounded-md border font-mono text-sm font-black",
                   active
-                    ? "border-[#f1ce73] bg-[#d7ae45] text-[#15180f]"
-                    : "border-[#4d5736] bg-[#252a1d] text-[#d7ae45]",
+                    ? "border-[#ffe09a] bg-[#f0bf54] text-[#10130f]"
+                    : "border-[#3f503f] bg-[#263126] text-[#67d8cf]",
                 )}
               >
                 {`0${index + 1}`}
               </span>
               <span className="min-w-0">
-                <span className="block text-base font-black text-[#f4ead2]">
+                <span className="block text-base font-black text-[#fff5de]">
                   {item.label}
                 </span>
-                <span className="mt-1 block text-sm text-[#b7a98b]">
+                <span className="mt-1 block text-sm leading-5 text-[#c1b59a]">
                   {item.description}
                 </span>
               </span>

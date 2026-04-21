@@ -17,31 +17,31 @@ export function PlayerHeader({ player, partyCount }: PlayerHeaderProps) {
   const locale = "en";
 
   return (
-    <header className="game-panel-strong rounded-sm p-5">
+    <header className="game-panel-strong p-5">
       <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div className="flex min-w-0 gap-4">
-          <div className="grid h-20 w-20 shrink-0 place-items-center overflow-hidden border border-[#4d5736] bg-[#252a1d]">
+          <div className="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-md border border-[#3f503f] bg-[#263126]">
             {player.skinUrl ? (
               <Image
                 src={player.skinUrl}
                 alt={`${player.name} skin`}
                 width={80}
                 height={80}
-                className="h-full w-full object-contain [image-rendering:pixelated]"
+                className="pixel-art h-full w-full object-contain"
               />
             ) : (
-              <span className="font-mono text-2xl font-black text-[#d7ae45]">
+              <span className="font-mono text-2xl font-black text-[#f0bf54]">
                 {player.name.slice(0, 2).toUpperCase()}
               </span>
             )}
           </div>
 
           <div className="min-w-0">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#d7ae45]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#67d8cf]">
               {t("player.trainerFile")}
             </p>
-            <h1 className="mt-1 truncate text-4xl font-black text-[#f4ead2]">{player.name}</h1>
-            <p className="mt-2 break-all font-mono text-xs text-[#83785f]">{player.uuid}</p>
+            <h1 className="mt-1 truncate text-4xl font-black text-[#fff5de]">{player.name}</h1>
+            <p className="mt-2 break-all font-mono text-xs text-[#8c9a86]">{player.uuid}</p>
           </div>
         </div>
 
@@ -49,8 +49,8 @@ export function PlayerHeader({ player, partyCount }: PlayerHeaderProps) {
           <span
             className={
               presence.isOnline
-                ? "border border-[#79b86a]/70 bg-[#17301c] px-4 py-2 text-sm font-black uppercase tracking-[0.12em] text-[#9be18c]"
-                : "border border-[#83785f]/70 bg-[#191a16] px-4 py-2 text-sm font-black uppercase tracking-[0.12em] text-[#b7a98b]"
+                ? "inline-flex items-center gap-2 rounded-md border border-[#7ed36f]/70 bg-[#17341c] px-4 py-2 text-sm font-black uppercase tracking-[0.12em] text-[#9ff28d]"
+                : "inline-flex items-center gap-2 rounded-md border border-[#8c9a86]/55 bg-[#171a16] px-4 py-2 text-sm font-black uppercase tracking-[0.12em] text-[#c1b59a]"
             }
             title={
               presence.isStaleOnline
@@ -58,37 +58,38 @@ export function PlayerHeader({ player, partyCount }: PlayerHeaderProps) {
                 : undefined
             }
           >
+            <span className="status-dot" />
             {presence.isOnline ? t("player.online") : t("player.offline")}
           </span>
-          <span className="border border-[#4d5736] bg-[#15180f] px-4 py-2 text-sm font-black text-[#f4ead2]">
+          <span className="rounded-md border border-[#3f503f] bg-[#111511] px-4 py-2 text-sm font-black text-[#fff5de]">
             {t("common.partySlots", { count: partyCount })}
           </span>
         </div>
       </div>
 
       <dl className="mt-5 grid gap-3 md:grid-cols-3">
-        <div className="border border-[#4d5736]/70 bg-[#15180f]/80 p-3">
-          <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#83785f]">
+        <div className="stat-tile p-3">
+          <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#8c9a86]">
             {t("player.server")}
           </dt>
-          <dd className="mt-1 font-mono font-bold text-[#f4ead2]">{player.serverId}</dd>
+          <dd className="mt-1 font-mono font-bold text-[#fff5de]">{player.serverId}</dd>
         </div>
-        <div className="border border-[#4d5736]/70 bg-[#15180f]/80 p-3">
-          <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#83785f]">
+        <div className="stat-tile p-3">
+          <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#8c9a86]">
             {t("player.lastSeen")}
           </dt>
           <dd
-            className="mt-1 font-bold text-[#f4ead2]"
+            className="mt-1 font-bold text-[#fff5de]"
             title={formatDateTime(player.lastSeen, locale)}
           >
             {formatRelativeTime(player.lastSeen, locale)}
           </dd>
         </div>
-        <div className="border border-[#4d5736]/70 bg-[#15180f]/80 p-3">
-          <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#83785f]">
+        <div className="stat-tile p-3">
+          <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#8c9a86]">
             {t("player.firstSeen")}
           </dt>
-          <dd className="mt-1 font-bold text-[#f4ead2]">
+          <dd className="mt-1 font-bold text-[#fff5de]">
             {formatDateTime(player.firstSeen, locale)}
           </dd>
         </div>

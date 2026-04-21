@@ -39,11 +39,11 @@ export function PokedexPageShell({
 
 function InfoChip({ label, value }: { label: string; value: string }) {
   return (
-    <div className="border border-[#4d5736]/70 bg-[#15180f]/80 p-3">
-      <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#83785f]">
+    <div className="stat-tile p-3">
+      <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#8c9a86]">
         {label}
       </p>
-      <p className="mt-1 text-sm font-bold text-[#f4ead2]">{value}</p>
+      <p className="mt-1 text-sm font-bold text-[#fff5de]">{value}</p>
     </div>
   );
 }

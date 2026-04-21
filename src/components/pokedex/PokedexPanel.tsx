@@ -72,12 +72,12 @@ export function PokedexPanel({ entries, party, errorMessage }: PokedexPanelProps
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-col gap-3 border border-[#4d5736]/70 bg-[#15180f]/85 p-3 xl:flex-row xl:items-center xl:justify-between">
+      <div className="flex flex-col gap-3 rounded-md border border-[#3f503f]/70 bg-[#111511]/85 p-3 xl:flex-row xl:items-center xl:justify-between">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#83785f]">
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#8c9a86]">
             {t("pokedex.sync")}
           </p>
-          <p className="mt-1 font-bold text-[#f4ead2]">
+          <p className="mt-1 font-bold text-[#fff5de]">
             {t("pokedex.syncCounts", {
               caught: totalCaught,
               unlocked: totalUnlocked,
@@ -94,10 +94,10 @@ export function PokedexPanel({ entries, party, errorMessage }: PokedexPanelProps
                 type="button"
                 onClick={() => setFilter(item.id)}
                 className={cn(
-                  "focus-ring border px-3 py-2 font-mono text-[11px] font-black uppercase tracking-[0.12em] transition",
+                  "focus-ring rounded-md border px-3 py-2 font-mono text-[11px] font-black uppercase tracking-[0.12em] transition",
                   filter === item.id
-                    ? "border-[#d7ae45] bg-[#d7ae45] text-[#15180f]"
-                    : "border-[#4d5736] bg-[#10130d] text-[#f4ead2] hover:border-[#d7ae45]/70",
+                    ? "border-[#f0bf54] bg-[#f0bf54] text-[#10130f]"
+                    : "border-[#3f503f] bg-[#10130f] text-[#fff5de] hover:border-[#67d8cf]/70",
                 )}
               >
                 {item.label}

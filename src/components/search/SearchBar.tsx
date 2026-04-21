@@ -16,13 +16,18 @@ export function SearchBar({
   return (
     <label className="block">
       <span className="sr-only">{label}</span>
-      <input
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        placeholder={placeholder}
-        className="focus-ring w-full min-w-0 border border-[#4d5736] bg-[#15180f] px-4 py-3 text-sm font-bold text-[#f4ead2] placeholder:text-[#83785f] lg:w-80"
-        type="search"
-      />
+      <span className="flex w-full min-w-0 items-center gap-3 rounded-md border border-[#3f503f] bg-[#111511] px-4 py-3 transition focus-within:border-[#67d8cf] lg:w-80">
+        <span aria-hidden="true" className="font-mono text-sm text-[#67d8cf]">
+          /
+        </span>
+        <input
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          placeholder={placeholder}
+          className="focus-ring w-full min-w-0 bg-transparent text-sm font-bold text-[#fff5de] outline-none placeholder:text-[#8c9a86]"
+          type="search"
+        />
+      </span>
     </label>
   );
 }
