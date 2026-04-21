@@ -5,7 +5,9 @@ dist/
 coverage/
 *.log
 *.zip
+*.tar.gz
 tsconfig.tsbuildinfo
 .codex/
+.pterodactyl-deploy/
 .env*
 !.env.example
