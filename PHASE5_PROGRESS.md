@@ -1,0 +1,149 @@
+# Phase 5 Progress Log
+
+## Step 1 — Route Split Foundation
+- Changed:
+  - Added dedicated `/party`, `/pokedex`, and `/team-analyze` pages.
+  - Added shared player companion route helpers and a shared page shell with page-level navigation.
+  - Redirected legacy `/players/[uuid]` traffic into `/party?player={uuid}`.
+  - Updated server player row links to open the new Party page directly.
+- Files touched:
+  - `src/lib/api/player-companion.ts`
+  - `src/components/players/PlayerCompanionNav.tsx`
+  - `src/components/players/PlayerDashboardShell.tsx`
+  - `src/components/party/*`
+  - `src/components/pokedex/PokedexPageShell.tsx`
+  - `src/components/team-analyze/TeamAnalyzePageShell.tsx`
+  - `src/app/party/page.tsx`
+  - `src/app/pokedex/page.tsx`
+  - `src/app/team-analyze/page.tsx`
+  - `src/app/players/[uuid]/page.tsx`
+  - `src/components/players/PlayerRow.tsx`
+- Remains:
+  - Team Analyze suggestion engine for Singles and Doubles.
+  - Final Team Analyze polish and deeper page verification.
+- Assumptions / TODOs:
+  - New dedicated pages use `?player=<uuid>` so the existing backend endpoints and current roster flow stay unchanged.
+  - Existing tab-based components are intentionally left in place for now while the dedicated-page flow settles.
+
+## Step 2 â€” Analyzer Suggestions + Dedicated Page Polish
+- Changed:
+  - Added deterministic rebuild suggestion logic for both Singles and Doubles.
+  - Wired Team Analyze to render grouped suggestion cards with severity, reason, recommendation, and optional examples.
+  - Polished Party into a dedicated selectable roster page and kept PokÃ©dex / Team Analyze under shared player-page navigation.
+  - Added a small `src/lib/team-analyze/*` utility area for rebuild logic exports.
+- Files touched:
+  - `src/lib/team-analysis.ts`
+  - `src/lib/team-analyze/rebuild-suggestions.ts`
+  - `src/lib/team-analyze/index.ts`
+  - `src/components/analysis/TeamAnalyzePanel.tsx`
+  - `src/components/team-analyze/TeamRebuildSuggestions.tsx`
+  - `src/components/party/PartyMemberCard.tsx`
+- Remains:
+  - Final compact handoff summary with exact rule explanation.
+  - Final cleanup / browser verification notes for the completed state.
+- Assumptions / TODOs:
+  - Absence-based move suggestions only trigger when enough known move sets exist, so the UI does not overclaim from sparse backend move data.
+  - Type-based weakness / overlap suggestions still render even when move detail is incomplete.
+
+## Step 3 â€” Verification Pass
+- Changed:
+  - Ran `npm run typecheck` and `npm run build` after the route split and analyzer changes.
+  - Live-checked `/party`, `/pokedex`, and `/team-analyze` with a real player query to confirm page navigation, content sections, and rebuild suggestions render.
+- Files touched:
+  - No new source files in this step; verification only.
+- Remains:
+  - Final user-facing handoff summary.
+- Assumptions / TODOs:
+  - Browser verification used `player=7c5639d8-285a-3386-8125-45c2d225e8a7`, which currently has a full 6-slot party and enough move/stat data to exercise the analyzer.
+
+## Step 4 - Lightweight EN/VI Localization Foundation
+- Changed:
+  - Added a lightweight `src/lib/i18n/*` dictionary + provider setup with EN/VI switching and localStorage persistence.
+  - Wired the shared app shell, language toggle, common loading/error/empty states, and shared player header/navigation into the language system.
+  - Updated the dynamic `/party`, `/pokedex`, and `/team-analyze` page errors/loading states to use translation keys instead of hardcoded server-page strings.
+- Files touched:
+  - `src/lib/i18n/en.ts`
+  - `src/lib/i18n/vi.ts`
+  - `src/lib/i18n/index.ts`
+  - `src/lib/i18n/provider.tsx`
+  - `src/components/layout/AppShell.tsx`
+  - `src/components/layout/LanguageSwitcher.tsx`
+  - `src/components/ui/LoadingState.tsx`
+  - `src/components/ui/ErrorState.tsx`
+  - `src/components/ui/EmptyState.tsx`
+  - `src/components/players/PlayerHeader.tsx`
+  - `src/components/players/PlayerCompanionNav.tsx`
+  - `src/app/party/loading.tsx`
+  - `src/app/pokedex/loading.tsx`
+  - `src/app/team-analyze/loading.tsx`
+  - `src/app/party/page.tsx`
+  - `src/app/pokedex/page.tsx`
+  - `src/app/team-analyze/page.tsx`
+  - `src/lib/format.ts`
+- Remains:
+  - Runtime browser pass after the localization + analyzer changes.
+  - Final user-facing handoff summary.
+- Assumptions / TODOs:
+  - Localization is intentionally lightweight and dictionary-driven; this is not a full routing-based i18n framework.
+  - Canonical Pokemon game data like species names, move names, abilities, items, and types are intentionally left in their standard forms.
+
+## Step 5 - Party Screen Refactor + Replacement Suggestions
+- Changed:
+  - Refactored `/party` back toward the earlier summary-screen feel: left portrait, center detail tabs, right party slots.
+  - Reused the existing Pokemon summary/moves/stats components instead of rebuilding the data flow.
+  - Localized the Party, Pokedex, and Team Analyze page shells and major UI sections.
+  - Added deterministic team replacement suggestions for Singles and Doubles, with candidate selection based on overlap, shared weaknesses, weak coverage contribution, speed fit, and doubles support/protect pressure.
+  - Extended analyzer output to include translation-aware badges, rebuild suggestions, and replacement suggestions.
+- Files touched:
+  - `src/components/party/PartyHeader.tsx`
+  - `src/components/party/PartyOverview.tsx`
+  - `src/components/party/PartyDetailTabs.tsx`
+  - `src/components/pokemon/PokemonPortraitPanel.tsx`
+  - `src/components/pokemon/PokemonSummaryPanel.tsx`
+  - `src/components/pokemon/PokemonStatsPanel.tsx`
+  - `src/components/pokemon/StatSubTabs.tsx`
+  - `src/components/pokemon/MoveRow.tsx`
+  - `src/components/pokemon/PartyPanel.tsx`
+  - `src/components/pokemon/PartySlot.tsx`
+  - `src/components/pokedex/PokedexPageShell.tsx`
+  - `src/components/pokedex/PokedexPanel.tsx`
+  - `src/components/pokedex/PokedexSearchBar.tsx`
+  - `src/components/pokedex/PokedexGrid.tsx`
+  - `src/components/pokedex/PokedexEntryCard.tsx`
+  - `src/components/pokedex/PokedexDetailPanel.tsx`
+  - `src/components/team-analyze/TeamAnalyzePageShell.tsx`
+  - `src/components/team-analyze/TeamRebuildSuggestions.tsx`
+  - `src/components/team-analyze/TeamReplacementSuggestions.tsx`
+  - `src/components/analysis/TeamAnalyzePanel.tsx`
+  - `src/components/analysis/TeamTypeSummary.tsx`
+  - `src/components/analysis/CoverageSummary.tsx`
+  - `src/components/analysis/CoverageBoard.tsx`
+  - `src/components/analysis/WeaknessSummary.tsx`
+  - `src/components/analysis/AnalysisBadgeList.tsx`
+  - `src/lib/team-analysis.ts`
+  - `src/lib/team-analyze/rebuild-suggestions.ts`
+  - `src/lib/team-analyze/replacement-suggestions.ts`
+  - `src/lib/team-analyze/index.ts`
+- Remains:
+  - Final browser verification pass against the live routes.
+  - Final handoff summary with rule explanations.
+- Assumptions / TODOs:
+  - Replacement suggestions stay role/type/archetype-based; they do not invent named Pokemon recommendations.
+  - Replacement output is deterministic and anchored to current team structure rather than freeform advisory text.
+
+## Step 6 - Remove Vietnamese UI Path
+- Changed:
+  - Removed the VI dictionary and the language switcher UI.
+  - Reduced the i18n layer back to English-only while keeping the existing translation helper intact.
+  - Removed the last locale-branch in the player header and re-verified the app build.
+- Files touched:
+  - `src/lib/i18n/index.ts`
+  - `src/lib/i18n/provider.tsx`
+  - `src/components/layout/AppShell.tsx`
+  - `src/components/layout/LanguageSwitcher.tsx`
+  - `src/lib/i18n/vi.ts`
+  - `src/components/players/PlayerHeader.tsx`
+- Remains:
+  - No frontend follow-up required for this removal.
+- Assumptions / TODOs:
+  - English remains centralized through the existing dictionary so localization can be reintroduced later without another structural rewrite.
